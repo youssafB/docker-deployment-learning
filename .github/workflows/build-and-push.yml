@@ -3,32 +3,27 @@ name: Docker Build and Push
 on:
   push:
     branches:
-      - main  # Change this to your main branch name
+      - main
 
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Repository
+    - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Login to Docker Hub
-      uses: docker/login-action@v1
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        python-version: '3.9'
 
-    - name: Set up Docker Buildx
-      run: |
-        docker buildx create --use
-        docker buildx inspect --bootstrap
-
-    - name: Build and Push Docker Image
+    - name: Build and push Docker image
       uses: docker/build-push-action@v2
       with:
         context: .
-        file: ./Dockerfile  # Change this if your Dockerfile is in a different location
-        platforms: linux/amd64,linux/arm64
         push: true
-        tags: youssaf/learning:latest
+        tags: youssaf/simple-flask-hello-app:latest
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
