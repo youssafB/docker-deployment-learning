@@ -29,6 +29,6 @@ jobs:
       with:
         context: .
         file: ./Dockerfile  # Change this if your Dockerfile is in a different location
-        platforms: linux/amd64,linux/arm64
+        #platforms: linux/amd64,linux/arm64
         push: true
-        tags: youssaf/student_performance:latest
+        tags: youssaf/learning:latest
