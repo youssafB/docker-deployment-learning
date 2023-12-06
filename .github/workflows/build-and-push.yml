@@ -23,7 +23,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: youssaf/simple-flask-app:latest
+        tags: youssaf/simple-flask-hello-app:latest
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
